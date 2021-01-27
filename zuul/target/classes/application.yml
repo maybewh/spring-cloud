@@ -1,0 +1,25 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: zuul-server # 应用名称
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka,http://localost:8762/eureka
+    fetch-registry: true
+
+zuul:
+  routes:
+    service-provider:    # 路由ID自定义
+      path: /service-provider/**  # 配置请求URL的映射路径
+      serviceId: service-provider
+      #url: http://localhost:7070/ # 映射路径对应的微服务地址
+ribbon:
+  eureka:
+    enabled: false

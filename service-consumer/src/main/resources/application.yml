@@ -1,0 +1,39 @@
+server:
+  port: 9090
+  tomcat:
+    max-threads: 10 # 降低最大线程数，方便模拟高并发
+spring:
+  application:
+    name: service-consumer
+  redis:
+    timeout: 10000 #连接超时时间
+    host: localhost
+    port: 6379
+    password: root
+    database: 0   # 选择哪个库，默认为0
+    lettuce:
+      pool:
+        max-active: 1024 # 最大连接数
+        max-wait: 10000 # 最大连接等待阻塞等待时间，单位为毫秒，默认为-1
+        max-idle: 200 # 最大空闲连接数
+        min-idle: 5 # 最小空闲连接数
+
+
+
+eureka:
+  client:
+    register-with-eureka: false      # 是否将自己注册到注册中心，默认为true，由于不提供服务，故不用注册到eureka上
+    registry-fetch-interval-seconds: 10  # 默认为30s，表示eureka client 间隔多久去服务器拉取注册信息，默认为30秒
+    service-url:                      # 设置服务注册中心地址
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+# 负载均衡策略，feign使用时ribbon客户单负载均衡
+# 局部负载均衡， service-provider为服务提供者的名称
+service-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+
+# eureka实际上把hystrix、ribbon、loadbalancer包都导入了进来
+# 服务消费的三种实现
+# 1. DiscoveryClient：通过元数据获取服务信息
+# 2. LoadBalancerClient：Ribbon的负载均衡器
+# 3. @LoadBalanced: 通过注解开启Ribbon的负载均衡器

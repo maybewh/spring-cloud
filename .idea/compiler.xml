@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="service-consumer" />
+        <module name="eureka-server02" />
+        <module name="zuul" />
+        <module name="service02-provider" />
+        <module name="eureka-server" />
+        <module name="serivce-provider" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="euraka-demo" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="eureka-server02" target="8" />
+      <module name="serivce-provider" target="1.7" />
+      <module name="service-consumer" target="1.8" />
+      <module name="service02-provider" target="1.7" />
+      <module name="zuul" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-server" options="-parameters" />
+      <module name="eureka-server02" options="-parameters" />
+      <module name="serivce-provider" options="-parameters" />
+      <module name="service-consumer" options="-parameters" />
+      <module name="service02-provider" options="-parameters" />
+      <module name="zuul" options="-parameters" />
+    </option>
+  </component>
+</project>
